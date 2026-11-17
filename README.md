@@ -80,3 +80,9 @@ El backend decide los permisos; el frontend solo oculta lo que cada rol no puede
 ## Pruebas y calidad
 
 Cada cambio pasa por el mismo flujo que corre en GitHub Actions (`.github/workflows/ci.yml`): instalación limpia, lint, formato, tipos, pruebas con cobertura, build y revisión de dependencias.
+
+## Autor y derechos de autor
+
+Hank
+
+Copyright (c) 2026 Hank. Todos los derechos reservados. Ver [LICENSE](LICENSE).
