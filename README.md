@@ -2,7 +2,7 @@
 
 Interfaz del sistema de inventario y punto de venta **Invexa**, para una ferretería en Perú. Permite vender en caja con teclado y lector de código de barras, controlar el stock con un kardex, gestionar deudas y ver reportes.
 
-Es la mitad web del proyecto. La API vive en [`../invexa-backend`](../invexa-backend).
+Es la mitad web del proyecto. La API vive en [`invexa-backend`](https://github.com/HANKZ08/invexa-backend).
 
 ## Stack
 
