@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Formato
+        run: npm run format
+
+      - name: Tipos
+        run: npm run typecheck
+
+      - name: Tests con cobertura
+        run: npm run test
+
+      - name: Build de producción
+        run: npm run build-only
+
+      # No bloquea: las alertas actuales vienen de vite y vue-router y su arreglo exige una versión mayor.
+      - name: Vulnerabilidades en dependencias (informativo)
+        continue-on-error: true
+        run: npm audit --omit=dev --audit-level=high

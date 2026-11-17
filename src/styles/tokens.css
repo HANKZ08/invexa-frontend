@@ -1,0 +1,166 @@
+/*
+ * Tokens de diseño de Invexa — mundo "Talonario de factura".
+ * Papel blanco sobre fondo hueso, barra en azul tinta de lapicero,
+ * numeración correlativa en rojo y copias de papel químico como estados.
+ * Modo oscuro: "papel carbón".
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Papel y tinta */
+  --ground: #f4f1e8; /* fondo hueso del mostrador */
+  --sheet: #ffffff; /* hoja original */
+  --sheet-sunken: #faf8f2;
+  --ink: #1c1b19; /* texto principal */
+  --ink-2: #4e4b44; /* texto secundario (8.6:1 sobre hoja) */
+  --ink-3: #6b675e; /* texto atenuado (5.4:1 sobre hoja) */
+  --rule: #ddd7c8; /* líneas del talonario */
+  --rule-strong: #b9b09b;
+
+  /* Tinta de lapicero (marca y acción principal) */
+  --blue: #1f3fa8;
+  --blue-hover: #18338a;
+  --blue-soft: #e7ecfb;
+  --on-blue: #ffffff;
+  --on-blue-2: #d5ddf7;
+
+  /* Sidebar (tinta de lapicero); en oscuro se oscurece en vez de aclararse */
+  --shell: #1f3fa8;
+  --on-shell: #ffffff;
+
+  /* Numeración de imprenta (correlativos y alertas críticas) */
+  --red: #c21f18;
+  --red-soft: #fbe3e1;
+
+  /* Copias de papel químico (estados) */
+  --copy-yellow: #fff1a8; /* por revisar, pendiente */
+  --copy-yellow-ink: #5f4a00;
+  --copy-pink: #fad2dc; /* anulada, alerta */
+  --copy-pink-ink: #861a31;
+  --copy-green: #dcf1e3; /* correcto, completada */
+  --copy-green-ink: #1b6b3e;
+
+  /* Series de gráficos */
+  --series-1: var(--blue);
+  --series-2: var(--red);
+  --series-3: #c99a00;
+  --series-4: #4e4b44;
+  --series-muted: #d6d0c1;
+
+  /* Tipografía: Archivo variable, ancho estrecho para cifras y títulos */
+  --font-sans: 'Archivo Variable', 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --stretch-narrow: 78%;
+  --stretch-normal: 100%;
+
+  --text-xs: 0.75rem; /* 12 */
+  --text-sm: 0.8125rem; /* 13 */
+  --text-md: 0.875rem; /* 14 */
+  --text-base: 1rem; /* 16 */
+  --text-lg: 1.125rem; /* 18 */
+  --text-xl: 1.375rem; /* 22 */
+  --text-2xl: 1.75rem; /* 28 */
+  --text-3xl: 2.25rem; /* 36 */
+  --text-4xl: 3rem; /* 48 */
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.55;
+
+  /* Espaciado (base 4 px) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-14: 3.5rem;
+
+  /* Forma y profundidad */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+  --shadow-sheet: 0 1px 2px rgb(28 27 25 / 0.06), 0 8px 18px -10px rgb(28 27 25 / 0.22);
+  --shadow-raised: 0 2px 4px rgb(28 27 25 / 0.08), 0 16px 32px -12px rgb(28 27 25 / 0.28);
+
+  /* Foco visible (requisito de caja) */
+  --focus-ring: 0 0 0 2px var(--sheet), 0 0 0 4px var(--blue);
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+}
+
+/*
+ * Papel carbón: modo oscuro. Sigue al sistema salvo que el usuario fije
+ * data-theme="light" o data-theme="dark" en <html>. Los valores se repiten en
+ * ambos bloques porque CSS no permite compartirlos entre @media y un selector.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --ground: #10131c;
+    --sheet: #181c28;
+    --sheet-sunken: #141824;
+    --ink: #ece8df;
+    --ink-2: #c3beb2;
+    --ink-3: #9d988c;
+    --rule: #2c3242;
+    --rule-strong: #465066;
+    --blue: #8ea6ff;
+    --blue-hover: #a9bbff;
+    --blue-soft: #1f2a4d;
+    --on-blue: #0f1424;
+    --on-blue-2: #24305a;
+    --shell: #18245a;
+    --on-shell: #e6ebff;
+    --red: #ff7a6e;
+    --red-soft: #3d1a1a;
+    --copy-yellow: #3a3210;
+    --copy-yellow-ink: #f3d96a;
+    --copy-pink: #3d1825;
+    --copy-pink-ink: #ffb3c4;
+    --copy-green: #15301f;
+    --copy-green-ink: #8fe0ae;
+    --series-3: #e8bf3a;
+    --series-4: #c3beb2;
+    --series-muted: #343b4d;
+    --shadow-sheet: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 18px -10px rgb(0 0 0 / 0.7);
+    --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.5), 0 16px 32px -12px rgb(0 0 0 / 0.8);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ground: #10131c;
+  --sheet: #181c28;
+  --sheet-sunken: #141824;
+  --ink: #ece8df;
+  --ink-2: #c3beb2;
+  --ink-3: #9d988c;
+  --rule: #2c3242;
+  --rule-strong: #465066;
+  --blue: #8ea6ff;
+  --blue-hover: #a9bbff;
+  --blue-soft: #1f2a4d;
+  --on-blue: #0f1424;
+  --on-blue-2: #24305a;
+  --shell: #18245a;
+  --on-shell: #e6ebff;
+  --red: #ff7a6e;
+  --red-soft: #3d1a1a;
+  --copy-yellow: #3a3210;
+  --copy-yellow-ink: #f3d96a;
+  --copy-pink: #3d1825;
+  --copy-pink-ink: #ffb3c4;
+  --copy-green: #15301f;
+  --copy-green-ink: #8fe0ae;
+  --series-3: #e8bf3a;
+  --series-4: #c3beb2;
+  --series-muted: #343b4d;
+  --shadow-sheet: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 18px -10px rgb(0 0 0 / 0.7);
+  --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.5), 0 16px 32px -12px rgb(0 0 0 / 0.8);
+}

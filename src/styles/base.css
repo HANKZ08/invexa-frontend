@@ -1,0 +1,175 @@
+/* Estilos base: tipografía, superficies del navegador y utilidades del talonario. */
+
+@import '@fontsource-variable/archivo/wdth.css';
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-stretch: var(--stretch-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-stretch: var(--stretch-narrow);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--blue);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--blue-hover);
+}
+
+/* Superficies que el navegador dibuja por defecto */
+::selection {
+  background: var(--copy-yellow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+input,
+textarea {
+  caret-color: var(--blue);
+}
+
+* {
+  scrollbar-color: var(--rule-strong) transparent;
+  scrollbar-width: thin;
+}
+
+/* Cifras: siempre tabulares para que las columnas de montos alineen */
+.num,
+table,
+input[inputmode='decimal'],
+input[inputmode='numeric'] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cifra destacada: ancho estrecho, como la numeración del talonario */
+.figure {
+  font-stretch: var(--stretch-narrow);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: var(--leading-tight);
+}
+
+/* Número correlativo en rojo de imprenta (firma del mundo) */
+.serial {
+  color: var(--red);
+  font-stretch: var(--stretch-narrow);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+/*
+ * Perforación del talón: línea punteada con dos medias perforaciones
+ * en los extremos, que separa el talón (N.°) del cuerpo de la hoja.
+ */
+.perforation {
+  position: relative;
+  height: 0;
+  border-top: 2px dashed var(--rule);
+}
+
+.perforation::before,
+.perforation::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ground);
+}
+
+.perforation::before {
+  left: -7px;
+}
+
+.perforation::after {
+  right: -7px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Área de trabajo: los hijos de la página no fuerzan ancho más allá de la pantalla */
+.content > * {
+  min-width: 0;
+}
+.content > * > * {
+  min-width: 0;
+}
+
+/* Filtros: todos los controles de una fila miden lo mismo */
+.filters input[type='date'],
+.filters select,
+.filters .ui-search__open {
+  height: 2.6rem;
+  box-sizing: border-box;
+}
+
+/* Móvil: los filtros se apilan y cada control ocupa todo el ancho */
+@media (max-width: 640px) {
+  .filters > * {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
